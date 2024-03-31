@@ -20,7 +20,7 @@ runs:
         current_version=${current_version#v}
 
         # Fetch latest tag prefixed with 'v'
-        latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+        latest_tag=$(git tag | grep '^v[0-9]\+\.[0-9]\+\.[0-9]\+$' | sort -V | tail -n 1)
 
         # Strip the 'v' prefix from the tag to get the semantic version
         latest_semver=${latest_tag#v}
